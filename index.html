@@ -5,12 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>إهداء خاص</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
+        /* تعريف المتغيرات للألوان لضمان التناسق والاحترافية */
+        :root {
+            --bg-gradient: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            --text-primary: #5d5d5d;
+            --flower-petal: #ffb7b2;
+            --flower-center: #ff9e99;
+            --stem-color: #88d8b0;
+            --leaf-color: #88d8b0;
+            --heart-color: #ffdac1;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;800&display=swap');
 
         body {
             margin: 0;
             padding: 0;
-            background: radial-gradient(circle, #2b1055, #7597de);
+            /* خلفية ناعمة جداً ومريحة للعين */
+            background: linear-gradient(to bottom, #fff1eb 0%, #ace0f9 100%); 
             height: 100vh;
             overflow: hidden;
             display: flex;
@@ -18,114 +30,193 @@
             align-items: center;
             justify-content: center;
             font-family: 'Tajawal', sans-serif;
-            color: white;
+            color: var(--text-primary);
         }
 
         .container {
             text-align: center;
-            z-index: 2;
+            z-index: 10;
             position: relative;
+            background: rgba(255, 255, 255, 0.3);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(5px); /* تأثير الزجاج الضبابي */
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
         }
 
         h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px #ff0055;
-            animation: pulse 2s infinite;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+            color: #4a4a4a;
+            letter-spacing: -1px;
         }
 
         p {
-            font-size: 1.5rem;
-            margin-top: 0;
-            opacity: 0.9;
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-top: 10px;
+            color: #666;
         }
 
-        /* مكان صورة الوردة */
-        .flower-container {
+        /* --- بداية رسم الوردة بالكود (CSS Art) --- */
+        .flower-wrapper {
+            position: relative;
+            width: 150px;
+            height: 250px;
             margin: 20px auto;
-            width: 200px;
-            height: 200px;
-            /* يمكنك استبدال الرابط أدناه برابط صورة ورود شفافة (PNG) */
-            background-image: url('https://cdn-icons-png.flaticon.com/512/8066/8066228.png'); 
-            background-size: cover;
-            animation: float 3s ease-in-out infinite;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            /* حركة التمايل للوردة بالكامل */
+            transform-origin: bottom center;
+            animation: sway 4s ease-in-out infinite;
         }
 
-        /* القلوب المتحركة */
-        .heart {
+        .stem {
+            width: 8px;
+            height: 150px;
+            background-color: var(--stem-color);
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .leaf {
             position: absolute;
-            bottom: -10vh;
-            background-color: rgba(255, 107, 129, 0.7);
-            width: 20px;
+            width: 40px;
             height: 20px;
+            background-color: var(--leaf-color);
+            border-radius: 40px 0px;
+            top: 60px;
+        }
+
+        .leaf.left {
+            left: -35px;
+            transform: rotate(-10deg);
+        }
+
+        .leaf.right {
+            right: -35px;
+            transform: rotate(190deg) scaleX(-1); /* عكس الورقة الثانية */
+            top: 40px;
+        }
+
+        .flower-head {
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 80px;
+        }
+
+        /* بتلات الوردة */
+        .petal {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: var(--flower-petal);
+            border-radius: 50% 50% 0 50%;
             transform: rotate(45deg);
-            animation: fly 5s linear infinite;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+            /* حركة تنفس للبتلات */
+            animation: bloom 3s ease-in-out infinite alternate;
+        }
+
+        .petal:nth-child(1) { left: 15px; top: 15px; transform: rotate(45deg); z-index: 2; background: var(--flower-center); }
+        .petal:nth-child(2) { left: 0px; top: 20px; transform: rotate(10deg); z-index: 1; opacity: 0.9; }
+        .petal:nth-child(3) { right: 0px; top: 20px; transform: rotate(80deg); z-index: 1; opacity: 0.9; }
+        .petal:nth-child(4) { left: 15px; top: -5px; transform: rotate(45deg) scale(0.8); z-index: 0; opacity: 0.8; }
+
+        /* --- الحركات (Animations) --- */
+        
+        @keyframes sway {
+            0% { transform: rotate(3deg); }
+            50% { transform: rotate(-3deg); }
+            100% { transform: rotate(3deg); }
+        }
+
+        @keyframes bloom {
+            0% { transform: scale(1) rotate(var(--r, 45deg)); }
+            100% { transform: scale(1.05) rotate(var(--r, 45deg)); }
+        }
+
+        /* --- القلوب الخلفية --- */
+        .heart-bg {
+            position: absolute;
+            bottom: -20px;
+            background-color: var(--heart-color);
+            width: 15px;
+            height: 15px;
+            transform: rotate(45deg);
+            animation: floatUp 6s linear infinite;
+            opacity: 0;
             z-index: 1;
         }
 
-        .heart::before, .heart::after {
+        .heart-bg::before, .heart-bg::after {
             content: "";
             position: absolute;
-            width: 20px;
-            height: 20px;
+            width: 15px;
+            height: 15px;
             border-radius: 50%;
             background-color: inherit;
         }
+        .heart-bg::before { top: -8px; left: 0; }
+        .heart-bg::after { top: 0; left: -8px; }
 
-        .heart::before { top: -10px; left: 0; }
-        .heart::after { top: 0; left: -10px; }
-
-        @keyframes fly {
-            0% { bottom: -10vh; transform: rotate(45deg) translateX(0); opacity: 1; }
-            100% { bottom: 110vh; transform: rotate(45deg) translateX(50px); opacity: 0; }
+        @keyframes floatUp {
+            0% { bottom: -20px; opacity: 0; transform: rotate(45deg) translateX(0); }
+            20% { opacity: 0.6; }
+            100% { bottom: 100vh; opacity: 0; transform: rotate(45deg) translateX(20px); }
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>سوسو🤍🌿</h1>
+        <h1>سوسو <span style="font-size: 0.8em; vertical-align: middle;">🤍🌿</span></h1>
         
-        <div class="flower-container"></div>
+        <div class="flower-wrapper">
+            <div class="stem">
+                <div class="leaf left"></div>
+                <div class="leaf right"></div>
+                <div class="flower-head">
+                    <div class="petal" style="--r: 45deg"></div>
+                    <div class="petal" style="--r: 10deg"></div>
+                    <div class="petal" style="--r: 80deg"></div>
+                    <div class="petal" style="--r: 45deg"></div>
+                </div>
+            </div>
+        </div>
         
-        <p>كلنا نروح فدوة لإيدچ🍃🫶🏻</p>
+        <p>كلنا نروح فدوة لإيدچ🫶🏻🍃</p>
     </div>
 
     <script>
-        function createHeart() {
+        // دالة إنشاء القلوب بطريقة احترافية وخفيفة على المتصفح
+        function createFloatingHeart() {
             const heart = document.createElement('div');
-            heart.classList.add('heart');
+            heart.classList.add('heart-bg');
+            
+            // مواقع عشوائية وأحجام متفاوتة لإعطاء عمق
             heart.style.left = Math.random() * 100 + "vw";
-            heart.style.animationDuration = Math.random() * 2 + 3 + "s";
-            heart.style.opacity = Math.random();
-            heart.style.width = heart.style.height = Math.random() * 15 + 10 + "px"; // تغيير الحجم عشوائياً
+            heart.style.animationDuration = Math.random() * 3 + 4 + "s"; // بين 4 و 7 ثواني
             
-            // إصلاح شكل القلب عند تغيير الحجم
-            const size = parseInt(heart.style.width);
-            const beforeAfterSize = size + "px";
+            // تغيير اللون قليلاً بين درجات الوردي الباهت
+            const colors = ['#ffdac1', '#ffb7b2', '#e2f0cb', '#ff9aa2'];
+            heart.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
             
-            // ملاحظة: الحجم في الـ CSS ثابت، هذا التعديل بسيط لإضافة عشوائية
             document.body.appendChild(heart);
 
+            // إزالة العنصر بعد انتهاء الحركة للحفاظ على الذاكرة
             setTimeout(() => {
                 heart.remove();
-            }, 5000);
+            }, 7000);
         }
 
-        setInterval(createHeart, 300);
+        setInterval(createFloatingHeart, 400);
     </script>
 
 </body>
