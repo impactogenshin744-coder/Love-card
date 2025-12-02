@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إهداء خاص</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle, #2b1055, #7597de);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Tajawal', sans-serif;
+            color: white;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px #ff0055;
+            animation: pulse 2s infinite;
+        }
+
+        p {
+            font-size: 1.5rem;
+            margin-top: 0;
+            opacity: 0.9;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        }
+
+        /* مكان صورة الوردة */
+        .flower-container {
+            margin: 20px auto;
+            width: 200px;
+            height: 200px;
+            /* يمكنك استبدال الرابط أدناه برابط صورة ورود شفافة (PNG) */
+            background-image: url('https://cdn-icons-png.flaticon.com/512/8066/8066228.png'); 
+            background-size: cover;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* القلوب المتحركة */
+        .heart {
+            position: absolute;
+            bottom: -10vh;
+            background-color: rgba(255, 107, 129, 0.7);
+            width: 20px;
+            height: 20px;
+            transform: rotate(45deg);
+            animation: fly 5s linear infinite;
+            z-index: 1;
+        }
+
+        .heart::before, .heart::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: inherit;
+        }
+
+        .heart::before { top: -10px; left: 0; }
+        .heart::after { top: 0; left: -10px; }
+
+        @keyframes fly {
+            0% { bottom: -10vh; transform: rotate(45deg) translateX(0); opacity: 1; }
+            100% { bottom: 110vh; transform: rotate(45deg) translateX(50px); opacity: 0; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>سوسو🤍🌿</h1>
+        
+        <div class="flower-container"></div>
+        
+        <p>كلنا نروح فدوة لإيدچ🍃🫶🏻</p>
+    </div>
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+            heart.style.opacity = Math.random();
+            heart.style.width = heart.style.height = Math.random() * 15 + 10 + "px"; // تغيير الحجم عشوائياً
+            
+            // إصلاح شكل القلب عند تغيير الحجم
+            const size = parseInt(heart.style.width);
+            const beforeAfterSize = size + "px";
+            
+            // ملاحظة: الحجم في الـ CSS ثابت، هذا التعديل بسيط لإضافة عشوائية
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
+
+</body>
+</html>
