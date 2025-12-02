@@ -3,26 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إهداء خاص</title>
+    <title>إهداء راقي</title>
     <style>
-        /* تعريف المتغيرات للألوان لضمان التناسق والاحترافية */
-        :root {
-            --bg-gradient: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
-            --text-primary: #5d5d5d;
-            --flower-petal: #ffb7b2;
-            --flower-center: #ff9e99;
-            --stem-color: #88d8b0;
-            --leaf-color: #88d8b0;
-            --heart-color: #ffdac1;
-        }
-
-        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400&display=swap');
 
         body {
             margin: 0;
             padding: 0;
-            /* خلفية ناعمة جداً ومريحة للعين */
-            background: linear-gradient(to bottom, #fff1eb 0%, #ace0f9 100%); 
+            /* خلفية متدرجة هادئة مستوحاة من الصورة */
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
             height: 100vh;
             overflow: hidden;
             display: flex;
@@ -30,194 +19,136 @@
             align-items: center;
             justify-content: center;
             font-family: 'Tajawal', sans-serif;
-            color: var(--text-primary);
+            color: #e0e0e0;
         }
 
         .container {
             text-align: center;
-            z-index: 10;
+            z-index: 2;
             position: relative;
-            background: rgba(255, 255, 255, 0.3);
-            padding: 40px;
-            border-radius: 20px;
-            backdrop-filter: blur(5px); /* تأثير الزجاج الضبابي */
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+            margin-bottom: 20px;
         }
 
         h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 5px;
-            color: #4a4a4a;
-            letter-spacing: -1px;
+            font-family: 'Amiri', serif;
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            /* نص بلون كريمي هادئ */
+            color: #f0e6d2;
+            text-shadow: 0 0 15px rgba(240, 230, 210, 0.4);
         }
 
         p {
-            font-size: 1.2rem;
+            font-size: 1.6rem;
             font-weight: 300;
-            margin-top: 10px;
-            color: #666;
+            margin-top: 0;
+            opacity: 0.8;
+            letter-spacing: 0.5px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
         }
 
-        /* --- بداية رسم الوردة بالكود (CSS Art) --- */
-        .flower-wrapper {
+        /* حاوية رسم SVG للورود */
+        .flower-svg-container {
             position: relative;
-            width: 150px;
-            height: 250px;
-            margin: 20px auto;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            /* حركة التمايل للوردة بالكامل */
-            transform-origin: bottom center;
-            animation: sway 4s ease-in-out infinite;
+            width: 350px;
+            height: 350px;
+            margin: 30px auto;
         }
 
-        .stem {
-            width: 8px;
-            height: 150px;
-            background-color: var(--stem-color);
-            border-radius: 4px;
-            position: relative;
+        /* أنماط لرسم SVG والرسوم المتحركة */
+        .flower-stem {
+            fill: none;
+            stroke: #4a7c59; /* أخضر زمردي هادئ */
+            stroke-width: 4;
+            stroke-linecap: round;
         }
 
-        .leaf {
-            position: absolute;
-            width: 40px;
-            height: 20px;
-            background-color: var(--leaf-color);
-            border-radius: 40px 0px;
-            top: 60px;
+        .flower-leaf {
+            fill: #5c946e; /* درجة أفتح من الأخضر */
         }
 
-        .leaf.left {
-            left: -35px;
-            transform: rotate(-10deg);
+        .flower-petal {
+            fill: #e8a87c; /* وردي خوخي ناعم */
         }
 
-        .leaf.right {
-            right: -35px;
-            transform: rotate(190deg) scaleX(-1); /* عكس الورقة الثانية */
-            top: 40px;
+        .flower-center {
+            fill: #f3d250; /* أصفر ذهبي هادئ */
         }
 
-        .flower-head {
-            position: absolute;
-            top: -60px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 80px;
-        }
-
-        /* بتلات الوردة */
-        .petal {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            background-color: var(--flower-petal);
-            border-radius: 50% 50% 0 50%;
-            transform: rotate(45deg);
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
-            /* حركة تنفس للبتلات */
-            animation: bloom 3s ease-in-out infinite alternate;
-        }
-
-        .petal:nth-child(1) { left: 15px; top: 15px; transform: rotate(45deg); z-index: 2; background: var(--flower-center); }
-        .petal:nth-child(2) { left: 0px; top: 20px; transform: rotate(10deg); z-index: 1; opacity: 0.9; }
-        .petal:nth-child(3) { right: 0px; top: 20px; transform: rotate(80deg); z-index: 1; opacity: 0.9; }
-        .petal:nth-child(4) { left: 15px; top: -5px; transform: rotate(45deg) scale(0.8); z-index: 0; opacity: 0.8; }
-
-        /* --- الحركات (Animations) --- */
-        
+        /* رسوم متحركة للتمايل */
         @keyframes sway {
-            0% { transform: rotate(3deg); }
-            50% { transform: rotate(-3deg); }
-            100% { transform: rotate(3deg); }
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+        }
+        
+        @keyframes leaf-wave {
+            0%, 100% { transform: rotate(-5deg) translateY(0); }
+            50% { transform: rotate(5deg) translateY(-2px); }
         }
 
-        @keyframes bloom {
-            0% { transform: scale(1) rotate(var(--r, 45deg)); }
-            100% { transform: scale(1.05) rotate(var(--r, 45deg)); }
+        /* تطبيق الرسوم المتحركة */
+        .swaying-flower {
+            transform-origin: bottom center;
+            animation: sway 5s ease-in-out infinite;
         }
-
-        /* --- القلوب الخلفية --- */
-        .heart-bg {
-            position: absolute;
-            bottom: -20px;
-            background-color: var(--heart-color);
-            width: 15px;
-            height: 15px;
-            transform: rotate(45deg);
-            animation: floatUp 6s linear infinite;
-            opacity: 0;
-            z-index: 1;
+        
+        .waving-leaf {
+             transform-origin: center;
+             animation: leaf-wave 4s ease-in-out infinite;
         }
-
-        .heart-bg::before, .heart-bg::after {
-            content: "";
-            position: absolute;
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            background-color: inherit;
-        }
-        .heart-bg::before { top: -8px; left: 0; }
-        .heart-bg::after { top: 0; left: -8px; }
-
-        @keyframes floatUp {
-            0% { bottom: -20px; opacity: 0; transform: rotate(45deg) translateX(0); }
-            20% { opacity: 0.6; }
-            100% { bottom: 100vh; opacity: 0; transform: rotate(45deg) translateX(20px); }
-        }
-
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>سوسو <span style="font-size: 0.8em; vertical-align: middle;">🤍🌿</span></h1>
-        
-        <div class="flower-wrapper">
-            <div class="stem">
-                <div class="leaf left"></div>
-                <div class="leaf right"></div>
-                <div class="flower-head">
-                    <div class="petal" style="--r: 45deg"></div>
-                    <div class="petal" style="--r: 10deg"></div>
-                    <div class="petal" style="--r: 80deg"></div>
-                    <div class="petal" style="--r: 45deg"></div>
-                </div>
-            </div>
-        </div>
-        
-        <p>كلنا نروح فدوة لإيدچ🫶🏻🍃</p>
+        <h1>سوسو 🤍🌿</h1>
+        <p>كلنا نروح فدوة لإيدچ 🫶🏻🍃</p>
     </div>
 
-    <script>
-        // دالة إنشاء القلوب بطريقة احترافية وخفيفة على المتصفح
-        function createFloatingHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart-bg');
-            
-            // مواقع عشوائية وأحجام متفاوتة لإعطاء عمق
-            heart.style.left = Math.random() * 100 + "vw";
-            heart.style.animationDuration = Math.random() * 3 + 4 + "s"; // بين 4 و 7 ثواني
-            
-            // تغيير اللون قليلاً بين درجات الوردي الباهت
-            const colors = ['#ffdac1', '#ffb7b2', '#e2f0cb', '#ff9aa2'];
-            heart.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-            
-            document.body.appendChild(heart);
+    <div class="flower-svg-container">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <g class="swaying-flower">
+                <path class="flower-stem" d="M100 180 Q 105 140, 100 100" />
+                <path class="flower-leaf waving-leaf" d="M100 140 Q 80 130, 75 115 Q 95 120, 100 140 Z" style="animation-delay: 0.5s;" />
+                <path class="flower-leaf waving-leaf" d="M100 120 Q 120 110, 125 95 Q 105 100, 100 120 Z" style="animation-delay: 1s;" />
 
-            // إزالة العنصر بعد انتهاء الحركة للحفاظ على الذاكرة
-            setTimeout(() => {
-                heart.remove();
-            }, 7000);
-        }
+                <g transform="translate(100, 100)">
+                    <circle class="flower-petal" cx="0" cy="-15" r="12" />
+                    <circle class="flower-petal" cx="14" cy="-5" r="12" />
+                    <circle class="flower-petal" cx="9" cy="12" r="12" />
+                    <circle class="flower-petal" cx="-9" cy="12" r="12" />
+                    <circle class="flower-petal" cx="-14" cy="-5" r="12" />
+                    <circle class="flower-center" cx="0" cy="0" r="7" />
+                </g>
+            </g>
+            
+            <g class="swaying-flower" style="animation-duration: 6s; animation-delay: -2s;">
+                <path class="flower-stem" d="M70 180 Q 75 150, 60 120" />
+                <path class="flower-leaf waving-leaf" d="M65 150 Q 45 140, 40 125 Q 60 130, 65 150 Z" style="animation-delay: 0.8s;" />
+                <g transform="translate(60, 120) scale(0.8)">
+                    <circle class="flower-petal" cx="0" cy="-15" r="12" />
+                    <circle class="flower-petal" cx="14" cy="-5" r="12" />
+                    <circle class="flower-petal" cx="9" cy="12" r="12" />
+                    <circle class="flower-petal" cx="-9" cy="12" r="12" />
+                    <circle class="flower-petal" cx="-14" cy="-5" r="12" />
+                    <circle class="flower-center" cx="0" cy="0" r="7" />
+                </g>
+            </g>
 
-        setInterval(createFloatingHeart, 400);
-    </script>
+            <g class="swaying-flower" style="animation-duration: 5.5s; animation-delay: -1s;">
+                <path class="flower-stem" d="M130 180 Q 125 150, 140 120" />
+                <path class="flower-leaf waving-leaf" d="M135 150 Q 155 140, 160 125 Q 140 130, 135 150 Z" style="animation-delay: 0.3s;" />
+                <g transform="translate(140, 120) scale(0.8)">
+                    <circle class="flower-petal" cx="0" cy="-15" r="12" />
+                    <circle class="flower-petal" cx="14" cy="-5" r="12" />
+                    <circle class="flower-petal" cx="9" cy="12" r="12" />
+                    <circle class="flower-petal" cx="-9" cy="12" r="12" />
+                    <circle class="flower-petal" cx="-14" cy="-5" r="12" />
+                    <circle class="flower-center" cx="0" cy="0" r="7" />
+                </g>
+            </g>
+        </svg>
+    </div>
 
 </body>
 </html>
